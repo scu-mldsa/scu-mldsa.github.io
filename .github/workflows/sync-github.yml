@@ -2,11 +2,8 @@ name: Auto Sync GitHub Organization Activity & Contributors
 
 on:
   schedule:
-    # 每天北京时间凌晨 4:00 自动拉取一次社团组织下的所有仓库、贡献者与提交热力图
-    - cron: '0 20 * * *'
-  workflow_dispatch: # 支持在 GitHub Actions 页面手动点击一键立即刷新
-  push:
-    branches: [ main, master ]
+    - cron: '15 20 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -18,90 +15,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Fetch GitHub Organization Stats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ORG_NAME: ${{ github.repository_owner }}
-        run: |
-          node -e '
-          const fs = require("fs");
-          const org = process.env.ORG_NAME || "scu-mldsa";
-          const headers = {
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "SCU-MLDSA-Website-Sync"
-          };
-          if (process.env.GITHUB_TOKEN) {
-            headers["Authorization"] = "Bearer " + process.env.GITHUB_TOKEN;
-          }
+        run: node .github/sync-github.mjs
 
-          async function main() {
-            const reposRes = await fetch(`https://api.github.com/orgs/${org}/repos?per_page=50&sort=updated`, { headers });
-            if (!reposRes.ok) {
-              console.log("Org API not found or private, skipping.");
-              return;
-            }
-            const repos = await reposRes.json();
-            const userMap = {};
-            const dailyMap = {};
-            let totalCommits = 0;
-
-            const sinceDate = new Date(Date.now() - 371 * 86400000).toISOString();
-
-            for (const repo of repos) {
-              if (repo.fork) continue;
-              // 1. Contributors
-              const cRes = await fetch(`${repo.contributors_url}?per_page=30`, { headers });
-              if (cRes.ok) {
-                const contributors = await cRes.json();
-                for (const u of (Array.isArray(contributors) ? contributors : [])) {
-                  if (!u || !u.login || u.type === "Bot") continue;
-                  if (!userMap[u.login]) {
-                    userMap[u.login] = {
-                      name: u.login,
-                      githubId: u.login,
-                      commits: 0,
-                      avatar: u.avatar_url,
-                      profileUrl: u.html_url
-                    };
-                  }
-                  userMap[u.login].commits += u.contributions || 0;
-                }
-              }
-
-              // 2. Commits in the last year for Heatmap
-              const cmRes = await fetch(`https://api.github.com/repos/${org}/${repo.name}/commits?since=${sinceDate}&per_page=100`, { headers });
-              if (cmRes.ok) {
-                const commits = await cmRes.json();
-                for (const cm of (Array.isArray(commits) ? commits : [])) {
-                  const dateStr = cm?.commit?.author?.date?.slice(0, 10);
-                  if (dateStr) {
-                    dailyMap[dateStr] = (dailyMap[dateStr] || 0) + 1;
-                    totalCommits++;
-                  }
-                }
-              }
-            }
-
-            const sortedContributors = Object.values(userMap).sort((a, b) => b.commits - a.commits);
-            const output = {
-              updatedAt: new Date().toISOString(),
-              totalCommits,
-              dailyMap,
-              contributors: sortedContributors.slice(0, 16)
-            };
-
-            fs.writeFileSync("assets/github-stats.json", JSON.stringify(output, null, 2));
-            console.log("Saved assets/github-stats.json successfully.");
-          }
-          main();
-          '
-
-      - name: Commit updated stats
+      - name: Commit updated stats if changed
         run: |
           if [ -f assets/github-stats.json ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add assets/github-stats.json
-            git diff --staged --quiet || git commit -m "chore: auto update GitHub contribution heatmap and contributors"
-            git push
+            git add -f assets/github-stats.json
+            if ! git diff --staged --quiet; then
+              git commit -m "chore: auto update GitHub contribution stats"
+              git pull --rebase origin main || true
+              git push origin main || true
+            fi
           fi

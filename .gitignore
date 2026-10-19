@@ -1,9 +1,3 @@
-*
-!/.gitignore
-!/README.md
-!/HANDOVER.md
-!/index.html
-!/site-config.js
-!/assets/**
-!/downloads/**
-!/.github/**
+*.rar
+*.zip
+make-avatars.py
