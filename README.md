@@ -137,4 +137,3 @@
 
 全部位于 `site-config.js` 最底部的 `advisors`（指导老师）、`departments`（三大部门：办公室/宣传部/活动部）和 `recruitment`（招新 QQ 群号 `qqGroup`、一键加群链接 `qqGroupLink`、微信公众号 `wechatAccount`）中，直接修改对应文字保存即可。
 
-> 更多关于**一年期域名绑定**与**社团换届管理员交接**的说明，请查阅仓库内的 [HANDOVER.md](./HANDOVER.md)。
