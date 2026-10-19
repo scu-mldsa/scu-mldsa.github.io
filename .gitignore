@@ -1,0 +1,9 @@
+*
+!/.gitignore
+!/README.md
+!/HANDOVER.md
+!/index.html
+!/site-config.js
+!/assets/**
+!/downloads/**
+!/.github/**
