@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none">
+  <!-- SCU·MLDSA 官方六边形冰晶纯矢量图标（无白底、高精度切面还原） -->
+  <!-- 顶部左浅冰蓝切面 -->
+  <polygon points="100,10 15,60 100,112" fill="#B5E8FC" />
+  <!-- 顶部右冰蓝切面 -->
+  <polygon points="100,10 185,60 142,86 100,112" fill="#ACE4FA" />
+  <!-- 右上斜切高光三角 -->
+  <polygon points="100,10 185,60 138,88" fill="#C2EDFD" />
+  <!-- 右侧极亮冰白主切面 -->
+  <polygon points="185,60 185,160 100,112" fill="#E3F6FE" />
+  <!-- 右侧亮白折射内切面 -->
+  <polygon points="185,60 185,160 138,88" fill="#EFFAFE" />
+  <!-- 右下中天蓝过渡切面 -->
+  <polygon points="100,112 185,160 100,210" fill="#7AD4F9" />
+  <!-- 左上天蓝切面 -->
+  <polygon points="15,60 100,112 58,136 15,160" fill="#82D6FA" />
+  <!-- 左下亮冰蓝外侧切面 -->
+  <polygon points="15,60 15,160 62,135" fill="#99DDFB" />
+  <!-- 左下高饱和晶蓝核心切面 -->
+  <polygon points="100,112 100,210 15,160" fill="#46C2F7" />
+  <!-- 左下折痕内三角 -->
+  <polygon points="62,135 100,210 15,160" fill="#64CCF8" />
+  <!-- 极细晶棱高光线 -->
+  <polygon points="100,10 185,60 185,160 100,210 15,160 15,60" stroke="#38BDF8" stroke-opacity="0.35" stroke-width="2" fill="none" />
+</svg>

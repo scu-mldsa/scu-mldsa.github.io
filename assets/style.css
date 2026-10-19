@@ -1,0 +1,58 @@
+/* ==========================================================================
+   SCU · MLDSA 1:1 复刻 CMU Data Science Club (cmudsc.com) 样式表
+   主色调：#082b57 (CMU DSC 标志性深海军蓝)
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #082b57;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* 独立子页面切换动画：使用 !important 防止被 Tailwind CDN 的 .flex 覆盖 */
+.page-view:not(.active) {
+  display: none !important;
+}
+
+.page-view.active {
+  display: flex !important;
+  animation: cmuFade 0.22s ease-out;
+}
+
+@keyframes cmuFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 顶部导航当前选中态 */
+.cmu-nav-item.active .nav-pill-bg {
+  transform: scale(1) !important;
+}
+
+/* 竞赛实战横向丝滑滑动轨道（隐藏杂乱滚动条，保留顺滑 Snap 吸附体验） */
+.comp-carousel {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.comp-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.comp-slide-card {
+  scroll-snap-align: start;
+}
