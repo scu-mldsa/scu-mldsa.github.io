@@ -94,7 +94,7 @@ window.SITE_CONFIG = {
     }, {
       id: "res-template-2",
       title: "机器学习实战Pytorch版",
-      category: "社团文档",
+      category: "学习资料",
       format: "PDF · 65.1 MB",
       url: "downloads/homlAI翻译版.pdf",
       filename: "homlAI翻译版.pdf",
@@ -102,7 +102,7 @@ window.SITE_CONFIG = {
     }, {
       id: "res-template-3",
       title: "动手学深度学习Pytorch版",
-      category: "社团文档",
+      category: "学习资料",
       format: "PDF · 29.4 MB",
       url: "downloads/d2l-zh-pytorch.pdf",
       filename: "d2l-zh-pytorch.pdf",
@@ -110,7 +110,7 @@ window.SITE_CONFIG = {
     }, {
       id: "res-template-4",
       title: "西瓜书-机器学习",
-      category: "社团文档",
+      category: "学习资料",
       format: "PDF · 37.4 MB",
       url: "downloads/机器学习.pdf",
       filename: "机器学习.pdf",
@@ -118,7 +118,7 @@ window.SITE_CONFIG = {
     }, {
       id: "res-template-5",
       title: "南瓜书-机器学习公式详解",
-      category: "社团文档",
+      category: "学习资料",
       format: "PDF · 11.1 MB",
       url: "downloads/机器学习公式详解.pdf",
       filename: "机器学习公式详解.pdf",
@@ -126,7 +126,7 @@ window.SITE_CONFIG = {
     }, {
       id: "res-template-6",
       title: "统计学习方法",
-      category: "社团文档",
+      category: "学习资料",
       format: "PDF · 91.9 MB",
       url: "downloads/统计学习方法.pdf",
       filename: "统计学习方法.pdf",
