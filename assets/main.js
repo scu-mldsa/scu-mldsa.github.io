@@ -661,6 +661,14 @@
     modal.classList.remove("hidden");
     modal.classList.add("flex");
 
+    if (/\.pdf($|\?)/i.test(res.url)) {
+    bodyEl.innerHTML =
+      '<iframe src="' +
+      res.url +
+      '" class="w-full h-[70vh] rounded-xl border border-[#082b57]/10 bg-white" title="PDF 预览"></iframe>';
+    return;
+    }
+    
     fetch(res.url)
       .then(function (r) { return r.text(); })
       .then(function (txt) {
