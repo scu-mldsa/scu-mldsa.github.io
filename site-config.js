@@ -30,16 +30,6 @@ window.SITE_CONFIG = {
       status: "即将开始",
       desc: "2026-2027学年机协干事破冰见面会，玩的开心！",
       docRoute: "#/resources"
-    },{
-      date: "待定日期",
-      weekday: "周六/周日",
-      time: "19:00 - 21:00",
-      title: "【活动模板】在此填写社团活动或讲座名称",
-      category: "活动类别（如：团建联谊 / 专题沙龙）",
-      location: "在此填写活动地点（如：江安校区综合楼）",
-      status: "即将开始",
-      desc: "在此填写活动的一句话简介或参与方式说明。",
-      docRoute: "#/resources"
     }
   ],
 
