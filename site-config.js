@@ -130,7 +130,7 @@ window.SITE_CONFIG = {
       format: "PDF · 91.9 MB",
       url: "downloads/统计学习方法.pdf",
       filename: "统计学习方法.pdf",
-      desc: "南瓜书的pdf"
+      desc: "李航的统计学习方法第二版"
     }
   ],
 
